@@ -37,7 +37,7 @@
           $user_inputArr = explode(",", $user_input);
           $input_password = $user_inputArr[1];
 
-          if ($password != $input_password){
+          if ($password == $input_password){
             echo "<script>
                   alert('That Password does not match with the Username. Please try again');
                   window.location.replace('./login.php');
