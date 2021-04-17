@@ -1,0 +1,67 @@
+ul {
+	list-style-type: none;
+}
+
+h1{
+  text-align: center;
+}
+
+.login{
+  float: left;
+  padding: 10px;
+}
+
+.register{
+  float: right;
+  padding: 10px;
+}
+
+.container{
+    display: flex;
+    margin-left: 16%;
+    margin-top: 25%;
+}
+
+fieldset{
+  border: 2px solid gray;
+  background-color: lightGray;
+}
+
+body{
+  font-family: "Times New Roman";
+  font-size: 12pt;
+  border: 5px solid grey;
+  width: 90%;
+  margin: 1em auto;
+  margin-top: 1.5%;
+  padding: 0.5em;
+  height: 90%;
+}
+
+form {
+	overflow: hidden;
+  width: 450px;
+}
+
+legend {
+	background-color: white;
+	border: 2px outset gray;
+	padding: 0.2em;
+}
+
+.inputBox{
+  width: 300px;
+  height: 30px;
+  border: none;
+  border-radius: 3px;
+  padding-left: 8px;
+}
+
+.submitButton{
+  width: 300px;
+  height: 30px;
+  border: none;
+  border-radius: 17px;
+  padding-left: 7px;
+
+}
