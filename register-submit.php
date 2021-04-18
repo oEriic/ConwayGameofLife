@@ -21,6 +21,11 @@
               alert('Please type in the Password');
               window.location.replace('./login.php');
               </script>";
+      } else if (is_numeric($password) != 1){
+        echo "<script>
+              alert('Please only use numbers in the Password');
+              window.location.replace('./login.php');
+              </script>";
       } else{
         for ($i = 0; $i < count($file1); $i++){
           $user_input = strstr($file1[$i], $username);
