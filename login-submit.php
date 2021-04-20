@@ -45,7 +45,7 @@
           } else{
             echo "<script>
                   alert('Welcome back! Redirecting to gamepage now');
-                  window.location.replace('./gamepage.html');
+                  window.location.replace('./gamegrid.html');
                   </script>";
           }
         }
