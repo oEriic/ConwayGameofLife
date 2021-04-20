@@ -65,3 +65,26 @@ legend {
   padding-left: 7px;
 
 }
+
+#gridContainer{
+  padding-bottom:10px;
+}
+table {
+	background-color: transparent;
+	border-radius: 8px;
+	border-spacing: 0;
+	width: 85%;
+}
+
+td {
+	border: 0.5px solid lightgray;
+	border-radius: 8px;
+	height: 10px;
+}
+td.dead{
+  background-color: aqua;
+}
+
+td.live{
+  background-color: pink;
+}
