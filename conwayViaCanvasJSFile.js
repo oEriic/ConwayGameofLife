@@ -8,6 +8,11 @@ const resolution = 10;
 canvas.width = 800;
 canvas.height = 800;
 
+var grid;
+
+var enableBoard = false;
+var timer;
+
 //Rows and Cols for grid
 const col = canvas.width / resolution;
 const row = canvas.height / resolution;
@@ -17,6 +22,7 @@ function buildGrid(){
     const newGrid = new Array(col).fill(null)
     .map (() => new Array(row).fill(null));
     return newGrid;
+
 }
 
 // add cells to grid and then load onto webpage
@@ -77,6 +83,19 @@ function displayNextGen(grid) {
     return copyGrid;
 }
 
+
+function makeAlive(arr, xSpot, ySpot){
+    if(xSpot <= 0 || ySpot <= 0){
+		return;
+	}
+    if(arr[xSpot][ySpot] == 1) {
+		var cell = document.getElementById(xSpot + "_" + ySpot);
+		arr[xSpot][ySpot] = 0;
+	} else if (arr[xSpot][ySpot] == 0) {
+		var cell = document.getElementById(xSpot + "_" + ySpot);
+		arr[xSpot][ySpot] = 1;
+	}
+}
 //get mouse position on click
 //Reference W3 Schools
 function getMousePosition(canvas, event) {
@@ -84,7 +103,7 @@ function getMousePosition(canvas, event) {
     let x = event.clientX - rect.left;
     let y = event.clientY - rect.top;
     console.log("Coordinate x: " + x,"Coordinate y: " + y);
-    grid[x][y] = 1;
+    makeAlive(grid,x,y);
 }
 
 // mouse click listener
@@ -115,14 +134,38 @@ function daRules(column, rows, nNeighbors, grid){
     }
     return copyGrid;
 }
-//call build grid 
-var grid = buildGrid();
 
-requestAnimationFrame(update);
-
-function update(){
-    grid = displayNextGen(grid);
-    render(grid);
-    requestAnimationFrame(update);
+//stopper
+function stopGame(){
+    enableBoard = false;
+    clearTimeout(timer);
 }
+
+// starter
+function startGame(){
+    if(enableBoard){
+        return;
+    }
+
+    enableBoard = true;
+    play();
+}
+
+//play-er
+function play(){
+    enableBoard = true;
+    displayNextGen();
+    timer = setTimeout(play, 100);
+}
+
+//call build grid 
+grid = buildGrid();
+
+//requestAnimationFrame(update);
+
+// function update(){
+//     grid = displayNextGen(grid);
+//     render(grid);
+//     requestAnimationFrame(update);
+// }
 
