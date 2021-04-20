@@ -7,6 +7,8 @@ var disableBoard = false;
 var playID;
 var stopID;
 
+var count = 0;
+
 function startUp(){
     //create grid
     grid = new Array(row).fill(null).map(() => new Array(col).fill(null));
@@ -54,6 +56,8 @@ function reset(){
         grid[i].fill(0);
         copyGrid[i].fill(0);
     }
+    count = 0;
+    document.getElementById("generations").innerHTML = "Generations: " + count;
 }
 
 // getter for preset patterns
@@ -92,10 +96,10 @@ function patternBrush(){
         case 3:
             //  Still life: Boat
             fillCell(grid, nRow, nCol);// top right
-            fillCell(grid, nRow-1, nCol); // top left
             fillCell(grid, nRow-1, nCol-1); // bottom left
             fillCell(grid, nRow-2, nCol-1); // bottom center with space in middle
             fillCell(grid, nRow-1, nCol+1); // right fin
+            fillCell(grid, nRow-2, nCol); //top left
             break;
         case 4:
             // Osci: Blinker
@@ -182,8 +186,36 @@ function displayNextGen() {
 			}
 		}
 	}
+    count++;
+    document.getElementById("generations").innerHTML = "Generations: " + count;
 }
 
+function displayGen23() {
+ //iterate 23 times  
+    for(var gen = 0; gen < 23; gen++){
+        // traverse array applying rules to each cell
+        for(var x_pos = 0; x_pos < row; x_pos++){
+            for(var y_pos = 0; y_pos < col; y_pos++){
+                var nNeighbors = countNeighbors(x_pos, y_pos);
+                daRules(x_pos, y_pos, nNeighbors, copyGrid);
+            }
+        }
+        
+        //Set cell dead or alive for the next generation
+        for (var i = 0; i < row; i++) {
+            for (var j = 0; j < col; j++) {
+                grid[i][j] = copyGrid[i][j];
+                if (grid[i][j] == 1) {
+                    document.getElementById(i + '_' + j).setAttribute('class', 'live');
+                } else {
+                    document.getElementById(i + '_' + j).setAttribute('class', 'dead');
+                }
+            }
+        }
+    }
+    count=count+23;
+    document.getElementById("generations").innerHTML = "Generations: " + count;
+}
 
 
 //rule implementations for new generation
@@ -199,7 +231,7 @@ function daRules(column, row, nNeighbors, copyGrid){
         //Current cell will die in the next generation due to underpopulation
         copyGrid[column][row] = 0;
     } else if(grid[column][row] == 1 && nNeighbors > 3){
-        //If current cell is alive and numNeighbors is more than 2
+        //If current cell is alive and numNeighbors is more than 3
         //Current cell will die in the necolumnt generation due to overpopulation
         copyGrid[column][row] = 0;
     } else if(grid[column][row] == 0 && nNeighbors == 3){
