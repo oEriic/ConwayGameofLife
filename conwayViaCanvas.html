@@ -9,9 +9,11 @@
         </title>
     </head>
 
-    <body>
+    <body onload="startUp()">
         <button onclick="startGame()">Start</button>
         <button onclick="stopGame()">Stop</button>
+
+        <div id="gridContainer"></div>
         <canvas></canvas>
         <script src="conwayViaCanvasJSFile.js"></script>
     </body>
