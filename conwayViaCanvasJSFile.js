@@ -12,6 +12,8 @@ var grid;
 
 var enableBoard = false;
 var timer;
+var playID;
+var stopID;
 
 //Rows and Cols for grid
 const col = canvas.width / resolution;
@@ -135,10 +137,11 @@ function daRules(column, rows, nNeighbors, grid){
     return copyGrid;
 }
 
+// Credit: https://www.youtube.com/watch?v=tS6oP1NveoI
 //stopper
 function stopGame(){
     enableBoard = false;
-    clearTimeout(timer);
+    cancelAnimationFrame(stopID);
 }
 
 // starter
@@ -146,26 +149,18 @@ function startGame(){
     if(enableBoard){
         return;
     }
-
+    window.requestAnimationFrame(update);
     enableBoard = true;
-    play();
-}
 
-//play-er
-function play(){
-    enableBoard = true;
-    displayNextGen();
-    timer = setTimeout(play, 100);
 }
+//End Credit---
 
 //call build grid 
 grid = buildGrid();
 
-//requestAnimationFrame(update);
-
-// function update(){
-//     grid = displayNextGen(grid);
-//     render(grid);
-//     requestAnimationFrame(update);
-// }
+function update(){
+    grid = displayNextGen(grid);
+    render(grid);
+    stopID = requestAnimationFrame(update);
+}
 
