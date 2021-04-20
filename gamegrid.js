@@ -2,7 +2,7 @@ var cells = document.getElementsByTagName("td");
 var table = document.getElementById("gametable");
 var gamestarted = 1;
 for(x = 0; x <= cells.length-1; x++){
-	cells[x].innerHTML = "<img src = \"blacksquare.png\" alt = \"square\"><src>"; //this code was written assuming the table will always be size 25x25, don't know what will happen if table is resized
+	cells[x].innerHTML = "<img src = \"blacksquare.png\" alt = \"square\">"; //this code was written assuming the table will always be size 25x25, don't know what will happen if table is resized
 }
 
 for(x = 0; x <= table.rows.length-1; x++){ //For now, random elements of the grid are meant to be filled in every time the page opens
@@ -12,6 +12,7 @@ for(x = 0; x <= table.rows.length-1; x++){ //For now, random elements of the gri
 }
 
 setTimeout(gamestart, 5000);//the grid should start 5 seconds after opening the page, the second argument is the number of miliseconds before the function in the first argument starts
+
 
 
 function gamestart(){

@@ -37,15 +37,20 @@
           $user_inputArr = explode(",", $user_input);
           $input_password = $user_inputArr[1];
 
-          if ($password != $input_password){
-            echo "<script>
-                  alert('That Password does not match with the Username. Please try again');
-                  window.location.replace('./login.php');
-                  </script>";
+          if (strcmp($password, $input_password) !== 0){
+            echo strcmp($password, $input_password);
+            echo $password;
+            echo "<br>";
+            echo $input_password;
+            echo "<br>";
+            echo $username;
+            echo "<br>";
+            echo $user_input;
+
           } else{
             echo "<script>
                   alert('Welcome back! Redirecting to gamepage now');
-                  window.location.replace('./gamepage.html');
+                  window.location.replace('./gamegrid.html');
                   </script>";
           }
         }

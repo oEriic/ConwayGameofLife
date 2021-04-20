@@ -40,7 +40,7 @@
           fclose ($file2);
           echo "<script>
                 alert('Successfully registered! Redirecting to gamepage now');
-                window.location.replace('./gamepage.html');
+                window.location.replace('./gamegrid.html');
                 </script>";
         }
       }
