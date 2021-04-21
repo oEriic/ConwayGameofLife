@@ -19,8 +19,6 @@ function startUp(){
     reset();
 
     //buttons
-
-
 }
 
 // add cells to grid and sets if alive or dead then load onto webpage
@@ -86,13 +84,6 @@ function patternBrush(){
     var pattern  = getPattern()
     // set pattern brush
     switch(pattern) {
-        case 2:
-            // Still life: Block
-            fillCell(grid, nRow, nCol); //top right
-            fillCell(grid, nRow, nCol-1); //top left
-            fillCell(grid, nRow-1, nCol); //bottom right
-            fillCell(grid, nRow-1, nCol-1); // bottom left
-            break;
         case 3:
             //  Still life: Boat
             fillCell(grid, nRow, nCol);// top right
@@ -106,17 +97,6 @@ function patternBrush(){
             fillCell(grid, nRow, nCol); // center
             fillCell(grid, nRow, nCol-1); // left
             fillCell(grid, nRow, nCol+1); // right
-            break;
-        case 5:
-            // Osci: Beacon 
-            //top
-            fillCell(grid, nRow, nCol);//tip of top
-            fillCell(grid, nRow, nCol+1);//right tip
-            fillCell(grid, nRow-1, nCol);//under of tip
-            //bot
-            fillCell(grid, nRow-3, nCol+3);//tip of under
-            fillCell(grid, nRow-3, nCol+2);//left of tip
-            fillCell(grid, nRow-2, nCol+3);//top of tip
             break;
         case 6:
             // Osci: Toad
