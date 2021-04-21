@@ -9,7 +9,7 @@
       $username = $_POST['username'];
       $password = $_POST['password'];
       $file1 = file("users.txt");
-      $user_saved = '';
+      $user_input = '';
 
       if ($username == ''){
         echo "<script>
@@ -23,29 +23,34 @@
               </script>";
       } else{
         for ($i = 0; $i < count($file1); $i++){
-          $user_saved = strstr($file1[$i], $username);
-          if($user_saved !== false) {
+          $user_input = strstr($file1[$i], $username);
+          if($user_input !== false) {
             break;
           }
         }
-        if ($user_saved == ''){
+        if ($user_input == ''){
           echo "<script>
                 alert('That Username does not exist. Please try again');
                 window.location.replace('./login.php');
                 </script>";
         } else{
-          $user_savedArr = explode(",", $user_saved);
-          $saved_password = $user_savedArr[1];
-          
-          if ($password != $saved_password){
-            echo "<script>
-                  alert('That Password does not match with the Username. Please try again');
-                  window.location.replace('./gamepage.html');
-                  </script>";
+          $user_inputArr = explode(",", $user_input);
+          $input_password = $user_inputArr[1];
+
+          if (strcmp($password, $input_password) !== 0){
+            echo strcmp($password, $input_password);
+            echo $password;
+            echo "<br>";
+            echo $input_password;
+            echo "<br>";
+            echo $username;
+            echo "<br>";
+            echo $user_input;
+
           } else{
             echo "<script>
                   alert('Welcome back! Redirecting to gamepage now');
-                  window.location.replace('./gamegrid.html');
+                  window.location.replace('./conwayViaCanvas.html');
                   </script>";
           }
         }
