@@ -45,7 +45,7 @@
           fclose ($file2);
           echo "<script>
                 alert('Successfully registered! Redirecting to gamepage now');
-                window.location.replace('./conwayViaCanvas.html');
+                window.location.replace('./conway.html');
                 </script>";
         }
       }

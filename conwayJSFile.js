@@ -133,32 +133,32 @@ function patternBrush(){
             fillCell(grid,nRow,nCol);
       } 
 }
-//count neighbors around the cell
+//count neighbors around the cell\\
 function countNeighbors(x,y){
     var numNeighbors = 0;
     //checks cells within a 3x3 radius
-    if (x-1 >= 0) {
+    if (x-1 >= 0) { // Left
 		if (grid[x-1][y] == 1) numNeighbors++;
 	}
-	if (x-1 >= 0 && y-1 >= 0) {
+	if (x-1 >= 0 && y-1 >= 0) { // top left
 		if (grid[x-1][y-1] == 1) numNeighbors++;
 	}
-	if (x-1 >= 0 && y+1 < col) {
+	if (x-1 >= 0 && y+1 < col) { // bottom left
 		if (grid[x-1][y+1] == 1) numNeighbors++;
 	}
-	if (y-1 >= 0) {
+	if (y-1 >= 0) { // upper
 		if (grid[x][y-1] == 1) numNeighbors++;
 	}
-	if (y+1 < col) {
+	if (y+1 < col) { // lower
 		if (grid[x][y+1] == 1) numNeighbors++;
 	}
-	if (x+1 < row) {
+	if (x+1 < row) { // right
 		if (grid[x+1][y] == 1) numNeighbors++;
 	}
-	if (x+1 < row && y-1 >= 0) {
+	if (x+1 < row && y-1 >= 0) { // top right
 		if (grid[x+1][y-1] == 1) numNeighbors++;
 	}
-	if (x+1 < row && y+1 < col) {
+	if (x+1 < row && y+1 < col) { // bottom right}
 		if (grid[x+1][y+1] == 1) numNeighbors++;
 	}
     return numNeighbors;
@@ -224,21 +224,21 @@ function displayGen23() {
 // Any live cell with two or three live neighbors live onto next generation
 // Any dead cell with exactly three live neighbors becomes a live cell
 function daRules(column, row, nNeighbors, copyGrid){
-    
     //rules
-    if(grid[column][row] == 1 && nNeighbors < 2) {
+    if(grid[row][column] == 1 && nNeighbors < 2) {
         //If current cell is alive and numNeighbors is less than 2
         //Current cell will die in the next generation due to underpopulation
-        copyGrid[column][row] = 0;
-    } else if(grid[column][row] == 1 && nNeighbors > 3){
+        copyGrid[row][column] = 0;
+    } else if(grid[row][column] == 1 && nNeighbors > 3){
         //If current cell is alive and numNeighbors is more than 3
         //Current cell will die in the necolumnt generation due to overpopulation
-        copyGrid[column][row] = 0;
-    } else if(grid[column][row] == 0 && nNeighbors == 3){
+        copyGrid[row][column] = 0;
+    } else if(grid[row][column] == 0 && nNeighbors == 3){
         //If current cell is dead and numNeighbors equals to 3
         //Current cell will become alive in the next generation
-        copyGrid[column][row] = 1;
-    }
+        copyGrid[row][column] = 1;
+    } 
+
     return copyGrid;
 }
 
