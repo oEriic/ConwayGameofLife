@@ -84,13 +84,12 @@ function patternBrush(){
     var pattern  = getPattern()
     // set pattern brush
     switch(pattern) {
-        case 3:
-            //  Still life: Boat
-            fillCell(grid, nRow, nCol);// top right
+        case 2:
+            // Still life: Block
+            fillCell(grid, nRow, nCol); //top right
+            fillCell(grid, nRow, nCol-1); //top left
+            fillCell(grid, nRow-1, nCol); //bottom right
             fillCell(grid, nRow-1, nCol-1); // bottom left
-            fillCell(grid, nRow-2, nCol-1); // bottom center with space in middle
-            fillCell(grid, nRow-1, nCol+1); // right fin
-            fillCell(grid, nRow-2, nCol); //top left
             break;
         case 4:
             // Osci: Blinker
@@ -98,6 +97,7 @@ function patternBrush(){
             fillCell(grid, nRow, nCol-1); // left
             fillCell(grid, nRow, nCol+1); // right
             break;
+
         case 6:
             // Osci: Toad
             fillCell(grid, nRow, nCol); // base

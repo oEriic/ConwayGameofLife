@@ -17,11 +17,11 @@
         <button id=1gen onclick="displayNextGen()">Increment 1 Gen</button>
         <button id=23gen onclick="displayGen23()">Increment 23 Gen</button>
         <button id = reset type="button" onclick="clearGrid()">Reset Game</button>
-        <div>
+        <div class = "dropbox">
             <strong>Please choose a pattern:</strong>
-            <select>
+            <select id="pattern">
                 <option value="1" onclick="patternBrush()">A Dot</option>
-                <option value="3" onclick="patternBrush(3)">Boat</option>
+                <option value="2" onclick="patternBrush(2)">Block</option>
                 <option value="4" onclick="patternBrush(4)">Blinker</option>
                 <option value="6" onclick="patternBrush(6)">Toad</option>
             </select>
