@@ -224,20 +224,36 @@ function displayGen23() {
 // Any live cell with two or three live neighbors live onto next generation
 // Any dead cell with exactly three live neighbors becomes a live cell
 function daRules(column, row, nNeighbors, copyGrid){
-    //rules
-    if(grid[row][column] == 1 && nNeighbors < 2) {
-        //If current cell is alive and numNeighbors is less than 2
-        //Current cell will die in the next generation due to underpopulation
-        copyGrid[row][column] = 0;
-    } else if(grid[row][column] == 1 && nNeighbors > 3){
-        //If current cell is alive and numNeighbors is more than 3
-        //Current cell will die in the necolumnt generation due to overpopulation
-        copyGrid[row][column] = 0;
-    } else if(grid[row][column] == 0 && nNeighbors == 3){
-        //If current cell is dead and numNeighbors equals to 3
-        //Current cell will become alive in the next generation
-        copyGrid[row][column] = 1;
-    } 
+
+    if(grid[column][row] == 1){
+        //rules for alive
+        switch (nNeighbors){
+            case nNeighbors < 2:
+            //If current cell is alive and has less than 2 neighbors
+            //It will die in the next generation due to underpopulation
+                copyGrid[column][row] = 0;
+                break;
+            case nNeighbors > 3:
+            //If current cell is alive and has more than 3 neighbors
+            //It will die in the next generation due to overpopulation
+                copyGrid[column][row] = 0;
+                break;
+            case nNeighbors == 2:
+            //If current cell is alive and has 2 neighbors it will
+            //live on to next generation
+                copyGrid[column][row] = 1;
+                break;
+            case nNeighbors == 3:
+            //If current cell is alive and has 3 neighbors it will
+            //live on to next generation
+                copyGrid[column][row] = 1;
+        }
+    }else{
+        //rules for dead
+        if(nNeighbors == 3){
+            copyGrid[column][row] = 1;
+        }
+    }
 
     return copyGrid;
 }
