@@ -17,8 +17,6 @@ function startUp(){
     render();
     // ensure grid is clear
     reset();
-
-    //buttons
 }
 
 // add cells to grid and sets if alive or dead then load onto webpage
