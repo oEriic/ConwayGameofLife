@@ -45,7 +45,7 @@
           } else{
             echo "<script>
                   alert('Welcome back! Redirecting to gamepage now');
-                  window.location.replace('./conwayViaCanvas.html');
+                  window.location.replace('./conway.html');
                   </script>";
           }
         }
