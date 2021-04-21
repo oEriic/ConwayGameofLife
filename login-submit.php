@@ -40,12 +40,12 @@
           if ($password != $saved_password){
             echo "<script>
                   alert('That Password does not match with the Username. Please try again');
-                  window.location.replace('./gamepage.html');
+                  window.location.replace('./login.php');
                   </script>";
           } else{
             echo "<script>
                   alert('Welcome back! Redirecting to gamepage now');
-                  window.location.replace('./gamepage.html');
+                  window.location.replace('./gamegrid.html');
                   </script>";
           }
         }
