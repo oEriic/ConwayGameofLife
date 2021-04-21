@@ -8,6 +8,7 @@
   <body>
     <h1> Game of Life </h1>
 
+    <img class = "image" src = "gol.gif" alt = "Game of Life">
     <div class = "container">
       <div class = "login">
         <form action = "login-submit.php" method = "post">
