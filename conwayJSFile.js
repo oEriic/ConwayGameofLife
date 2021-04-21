@@ -12,7 +12,7 @@ var count = 0;
 function startUp(){
     //create grid
     grid = new Array(row).fill(null).map(() => new Array(col).fill(null));
-    copyGrid = grid.map(elem => elem);
+    copyGrid = new Array(row).fill(null).map(() => new Array(col).fill(null));
     // create table
     render();
     // ensure grid is clear
@@ -151,15 +151,15 @@ function displayNextGen() {
     for(var x_pos = 0; x_pos < row; x_pos++){
         for(var y_pos = 0; y_pos < col; y_pos++){
             var nNeighbors = countNeighbors(x_pos, y_pos);
-            daRules(x_pos, y_pos, nNeighbors, copyGrid);
+            daRules(x_pos, y_pos, nNeighbors);
         }
     }
     
+    grid = copyGrid.map(arr => [...arr]);
     //Set cell dead or alive for the next generation
     for (var i = 0; i < row; i++) {
 		for (var j = 0; j < col; j++) {
-			grid[i][j] = copyGrid[i][j];
-			if (grid[i][j] == 1) {
+			if (copyGrid[i][j] == 1) {
 				document.getElementById(i + '_' + j).setAttribute('class', 'live');
 			} else {
 				document.getElementById(i + '_' + j).setAttribute('class', 'dead');
@@ -177,14 +177,15 @@ function displayGen23() {
         for(var x_pos = 0; x_pos < row; x_pos++){
             for(var y_pos = 0; y_pos < col; y_pos++){
                 var nNeighbors = countNeighbors(x_pos, y_pos);
-                daRules(x_pos, y_pos, nNeighbors, copyGrid);
+                daRules(x_pos, y_pos, nNeighbors);
+                
             }
         }
         
         //Set cell dead or alive for the next generation
+        grid = copyGrid.map(arr => [...arr]);
         for (var i = 0; i < row; i++) {
             for (var j = 0; j < col; j++) {
-                grid[i][j] = copyGrid[i][j];
                 if (grid[i][j] == 1) {
                     document.getElementById(i + '_' + j).setAttribute('class', 'live');
                 } else {
@@ -203,20 +204,27 @@ function displayGen23() {
 // Any live cell with more than three live neighbors will DIE
 // Any live cell with two or three live neighbors live onto next generation
 // Any dead cell with exactly three live neighbors becomes a live cell
-function daRules(column, row, nNeighbors, copyGrid){
-    //rules
-    if(grid[row][column] == 1 && nNeighbors < 2) {
-        //If current cell is alive and numNeighbors is less than 2
-        //Current cell will die in the next generation due to underpopulation
-        copyGrid[row][column] = 0;
-    } else if(grid[row][column] == 1 && nNeighbors > 3){
-        //If current cell is alive and numNeighbors is more than 3
-        //Current cell will die in the necolumnt generation due to overpopulation
-        copyGrid[row][column] = 0;
-    } else if(grid[row][column] == 0 && nNeighbors == 3){
-        //If current cell is dead and numNeighbors equals to 3
+function daRules(column, rows, neighbors){
+
+    //rules for alive
+    if(grid[column][rows] == 1 && neighbors < 2) {
+        //If current cell is alive and has less than 2 neighbors
+        //It will die in the next generation due to underpopulation
+        copyGrid[column][rows] = 0;
+    } else if(grid[column][rows] == 1 && neighbors > 3){
+        //If current cell is alive and has more than 3 neighbors
+        //It will die in the next generation due to overpopulation
+        copyGrid[column][rows] = 0;
+    } else if(grid[column][rows] == 1 && neighbors == 3){
+        //If current cell is alive and has 2 or 3 neighbors it will
+        //live on to next generation
+        copyGrid[column][rows] = 1;
+    } 
+    //rules for dead
+    else if(grid[column][rows] == 0 && neighbors == 3){
+        //If current cell is dead and neighbors equals to 3
         //Current cell will become alive in the next generation
-        copyGrid[row][column] = 1;
+        copyGrid[column][rows] = 1;
     } 
 
     return copyGrid;
