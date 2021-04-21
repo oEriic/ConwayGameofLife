@@ -11,6 +11,12 @@ h1{
   padding: 10px;
 }
 
+.image{
+	width: 400px;
+	height: 300px;
+	margin-left: 500px;
+}
+
 .register{
   float: right;
   padding: 10px;
@@ -18,8 +24,8 @@ h1{
 
 .container{
     display: flex;
-    margin-left: 16%;
-    margin-top: 25%;
+    margin-left: 200px;
+    margin-top: 30px;
 }
 
 fieldset{
@@ -35,7 +41,7 @@ body{
   margin: 1em auto;
   margin-top: 1.5%;
   padding: 0.5em;
-  height: 90%;
+  height: auto;
 }
 
 form {
